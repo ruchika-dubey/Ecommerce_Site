@@ -1,4 +1,4 @@
-﻿@model Ecommerce_Site.Models.LaptopModel
+@model Ecommerce_Site.Models.LaptopModel
 @{ ViewData["Title"] = "AddToCart"; }
 <br />
 <form asp-action="AddToCart" method="post">
@@ -7,43 +7,53 @@
 
         </div>
 
-        <h2 class="text-info">Cart</h2>
-
-        <div class="container">
+        <h2 class="text-info"> <i class="fas fa-shopping-cart"></i> Your Cart</h2>
 
             <div class="row">
-                <div class="col-md-4">
-                    <img src="@Html.DisplayFor(model => model.ImageUrl)" class="img-fluid img-thumbnail" alt="Responsive image">
-                </div>
-                <div class="col-md-8">
-                    <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProductName)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProductName)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Price)
-                        </dt>
-                        <dd class="col-sm-10">
-                            RS.@Html.DisplayFor(model => model.Price)/-
-                        </dd>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
 
-                    </dl>
-                    <input type="submit" class="btn btn-outline-primary btn-lg btn-block" value="Checkout! " />
-                   
-                </div>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
 
+                        <tr>
+                        <td>
+                            
+                                <img src="@Html.DisplayFor(model => model.ImageUrl)">
+                            
+                            </td>
+                                <td>  @Html.DisplayFor(model => model.ProductName)</td>
+                                <td>  RS.@Html.DisplayFor(model => model.Price)/-</td>
+
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <br />
-            <div>
-
-                <a asp-action="Index" class="btn btn-primary">Back to Home Page</a>
+            <div class="row">
+                <div class="col-6">
+                    <a asp-action="Index" asp-controller="Home" class="btn btn-success">Back to Home</a>
+                </div>
+                <div class="col-6 text-right">
+                    <h3>Total Amount</h3>
+                    <h3>Grant Total : RS.@Html.DisplayFor(model => model.Price)/- </h3>
+                    <input type="submit" class="btn btn-outline-primary btn-lg btn-block" value="Checkout! " />
+                </div>
             </div>
         </div>
-    </div>
+      
 </form>
+
+
+
+
+
+
 @section Scripts{
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
